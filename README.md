@@ -8,11 +8,17 @@ Este proyecto consiste en el desarrollo de un sitio web destinado a médicos, qu
   - **Node.js**
   - **Express**
   - **MongoDB**
+  - **Mongoose**
+  - **Bcrypt**
   - **JSON Web Token (JWT)**
 
 - **Frontend:**
+  - **Vue Router**
+  - **Axios**
+  - **Tailwind CSS**
   - **Vue.js**
   - **Pinia**
+  - **TypeScript**
   - **Toast Notifications**
   - **Composables**
 
