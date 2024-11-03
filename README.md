@@ -29,4 +29,4 @@ Este proyecto consiste en el desarrollo de un sitio web destinado a médicos, qu
 - Interfaz intuitiva para médicos y pacientes.
 - Notificaciones para confirmar citas y otros eventos relevantes.
 
-Este proyecto tiene como objetivo mejorar la eficiencia en la gestión de citas médicas, proporcionando una experiencia fácil y accesible tanto para los médicos como para los pacientes.
+Este proyecto tiene como objetivo mejorar la eficiencia en la gestión de citas médicas, proporcionando una experiencia fácil y accesible tanto para los médicos como para los pacientes y retarme con un proyecto Fullstack.
