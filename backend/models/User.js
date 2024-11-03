@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcryptPlugin from "mongoose-bcrypt";
 
 const UserSchema = mongoose.Schema({
     fullname: {
@@ -16,7 +17,8 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        bcrypt: true
     },
     address: {
         type: String,
@@ -52,5 +54,7 @@ const UserSchema = mongoose.Schema({
         default: false
     }
 });
+
+UserSchema.plugin(bcryptPlugin, {rounds: 12});
 
 export const User = mongoose.model("User", UserSchema);
