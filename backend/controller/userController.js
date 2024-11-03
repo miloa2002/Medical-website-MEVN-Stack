@@ -1,5 +1,7 @@
 import { User } from "../models/User.js"
 import colors from "colors";
+import jwt from "jsonwebtoken";
+import { generateJWT } from "../utils/index.js";
 
 const registerUser = async (req, res) => {
     if(Object.values(req.body).includes("")) {
@@ -50,7 +52,10 @@ const loginUser = async(req, res) => {
     try {
         const isMatch = await user.verifyPassword(password);
         if(isMatch) {
-            res.status(200).json({msg: "Inicio de sesión exitoso"});
+            const token = generateJWT(user._id);
+            res.json({
+                token
+            })
         }else {
             const error = new Error("Contraseña incorrecta");
             return res.status(400).json({msg: error.message});
