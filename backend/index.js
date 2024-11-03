@@ -2,7 +2,7 @@ import express from "express";
 import colors from "colors";
 import conectDB from "./config/db.js";
 import dotenv from "dotenv";
-import adminRoutes from "./routes/adminRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 
 const app = express();
 
@@ -11,7 +11,7 @@ dotenv.config();
 conectDB();
 
 app.use(express.json());
-app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/user", userRoutes);
 
 const PORT = 4000 | process.env.PORT;
 app.listen(PORT, () => {
