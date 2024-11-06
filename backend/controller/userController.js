@@ -67,7 +67,12 @@ const loginUser = async(req, res) => {
     }
 }
 
+const addDoctor = async (req, res) => {
+    
+}
+
 export {
     registerUser,
-    loginUser
+    loginUser,
+    addDoctor
 }
