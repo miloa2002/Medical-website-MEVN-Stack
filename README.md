@@ -17,7 +17,6 @@ Este proyecto consiste en el desarrollo de un sitio web destinado a médicos, qu
   - **Vue Router**
   - **Axios**
   - **Tailwind CSS**
-  - **Vue.js**
   - **Pinia**
   - **TypeScript**
   - **Toast Notifications**
