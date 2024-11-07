@@ -1,5 +1,23 @@
 <script setup lang="ts">
+import { reactive } from 'vue';
 import { RouterLink } from 'vue-router';
+import type { User } from '@/interfaces/User';
+import authApi from '@/api/authApi';
+
+const data = reactive<User>({
+    fullname: "",
+    email: "",
+    password: ""
+})
+
+const userRegister = async () => {
+    try {
+        const response = await authApi.register(data);
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 </script>
 
@@ -9,20 +27,20 @@ import { RouterLink } from 'vue-router';
         <h2 class="text-2xl font-semibold text-gray-800 text-center mb-2">Crear una cuenta</h2>
         <p class="text-gray-500 text-center mb-6">Por favor regístrese para reservar cita</p>
         
-        <form @submit.prevent="">
+        <form @submit.prevent="userRegister">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="full-name">Nombre completo</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="full-name" placeholder="Nombre completo">
+                <input v-model="data.fullname" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="full-name" placeholder="Nombre completo">
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm mb-2" for="email">Email</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" type="email" id="email" placeholder="Email">
+                <input v-model="data.email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" type="email" id="email" placeholder="Email">
             </div>
 
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm mb-2" for="password">Contraseña</label>
-                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" id="password" placeholder="Contraseña">
+                <input v-model="data.password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" id="password" placeholder="Contraseña">
             </div>
 
             <button class="w-full bg-customPurple text-white py-2 rounded-lg hover:bg-customBlueDark transition duration-200">Crear una cuenta</button>
