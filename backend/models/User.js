@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         trim: true,
         required: false,
-        default: "No seleccionado"
+        default: null
     },
     gender: {
         type: String,
