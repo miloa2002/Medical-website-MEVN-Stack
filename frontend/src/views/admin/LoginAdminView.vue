@@ -3,7 +3,7 @@ import authApi from '@/api/authApi';
 import type { ApiError } from '@/interfaces/Error';
 import type { UserLogin } from '@/interfaces/User';
 import { reactive } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { useToast } from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
@@ -14,6 +14,8 @@ const data = reactive<UserLogin>({
     password: ""
 })
 
+const router = useRouter();
+
 const adminLogin = async () => {
     try {
         const response = await authApi.loginAdmin(data);
@@ -22,6 +24,7 @@ const adminLogin = async () => {
             email: "",
             password: ""
         });
+        router.push("/admin");
     } catch (error) {
         const err = error as ApiError;
         $toast.error(err.response.data.msg);
