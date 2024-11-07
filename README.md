@@ -19,7 +19,7 @@ Este proyecto consiste en el desarrollo de un sitio web destinado a médicos, qu
   - **Tailwind CSS**
   - **Pinia**
   - **TypeScript**
-  - **Toast Notifications**
+  - **kyvg/vue3-notification**
   - **Composables**
 
 ## Funcionalidades
