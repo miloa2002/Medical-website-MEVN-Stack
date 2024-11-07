@@ -1,6 +1,5 @@
 import { User } from "../models/User.js"
 import colors from "colors";
-import jwt from "jsonwebtoken";
 import { generateJWT } from "../utils/index.js";
 
 const registerUser = async (req, res) => {
@@ -52,7 +51,7 @@ const loginUser = async(req, res) => {
     try {
         const isMatch = await user.verifyPassword(password);
         if(isMatch) {
-            const token = generateJWT(user._id);
+            const token = generateJWT(user._id, user.admin);
             res.json({
                 token
             })
@@ -67,12 +66,7 @@ const loginUser = async(req, res) => {
     }
 }
 
-const addDoctor = async (req, res) => {
-    
-}
-
 export {
     registerUser,
-    loginUser,
-    addDoctor
+    loginUser
 }

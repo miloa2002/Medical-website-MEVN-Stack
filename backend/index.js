@@ -4,6 +4,9 @@ import conectDB from "./config/db.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import cors from "cors";
+import authMiddleware from "./middleware/authMiddleware.js";
+import adminRoutes from "./routes/adminRoutes.js";
+import { adminOnly } from "./middleware/admin.js";
 
 const app = express();
 
@@ -19,6 +22,7 @@ const corsOption = {
 app.use(cors(corsOption));
 app.use(express.json());
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/admin-area", authMiddleware, adminOnly, adminRoutes);
 
 const PORT = 4000 | process.env.PORT;
 app.listen(PORT, () => {
