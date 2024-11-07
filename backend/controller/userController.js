@@ -51,9 +51,47 @@ const loginUser = async(req, res) => {
     try {
         const isMatch = await user.verifyPassword(password);
         if(isMatch) {
-            const token = generateJWT(user._id, user.admin);
+            const token = generateJWT(user._id);
             res.json({
-                token
+                token,
+            })
+        }else {
+            const error = new Error("Contraseña incorrecta");
+            return res.status(400).json({msg: error.message});
+        }
+    } catch {
+        const error = new Error("Error en el servidor");
+        res.status(500).json({msg: error.message});
+        console.log(colors.red(error));
+    }
+}
+
+
+const loginAdmin = async(req, res) => {
+    if(Object.values(req.body).includes("")) {
+        const error = new Error("Los datos no pueden ir vacíos");
+        return res.status(400).json({msg: error.message});
+    }
+
+    const {email, password} = req.body;
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+        const error = new Error("El Admin no existe en la base de datos");
+        return res.status(401).json({ msg: error.message });
+    }
+
+    if (!user.admin) {
+        const error = new Error("No tienes permisos de administrador");
+        return res.status(403).json({ msg: error.message });
+    }
+
+    try {
+        const isMatch = await user.verifyPassword(password);
+        if(isMatch) {
+            const token = generateJWT(user._id);
+            res.json({
+                token,
             })
         }else {
             const error = new Error("Contraseña incorrecta");
@@ -68,5 +106,6 @@ const loginUser = async(req, res) => {
 
 export {
     registerUser,
-    loginUser
+    loginUser,
+    loginAdmin
 }

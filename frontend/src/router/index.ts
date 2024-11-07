@@ -1,3 +1,4 @@
+import AdminLayout from '@/layouts/AdminLayout.vue'
 import HomeView from '@/views/HomeView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -23,6 +24,18 @@ const router = createRouter({
       path: '/login-admin',
       name: 'login-admin',
       component: () => import("../views/admin/LoginAdminView.vue")
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: AdminLayout,
+      children: [
+        {
+          path: '',
+          name: 'add-doctor',
+          component: () => import("../views/admin/AddDoctorView.vue")
+        }
+      ]
     }
   ]
 })
