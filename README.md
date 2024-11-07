@@ -13,10 +13,10 @@ Este proyecto consiste en el desarrollo de un sitio web destinado a médicos, qu
   - **JSON Web Token (JWT)**
 
 - **Frontend:**
+  - **Vue 3 Composition API**
   - **Vue Router**
   - **Axios**
   - **Tailwind CSS**
-  - **Vue.js**
   - **Pinia**
   - **TypeScript**
   - **Toast Notifications**
