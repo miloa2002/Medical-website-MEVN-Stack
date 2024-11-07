@@ -1,5 +1,5 @@
 const addDoctor = (req,res) => {
-
+    
 }
 
 export {
