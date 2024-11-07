@@ -2,7 +2,12 @@
 import { reactive } from 'vue';
 import { RouterLink } from 'vue-router';
 import type { User } from '@/interfaces/User';
+import type { ApiError } from '@/interfaces/Error';
 import authApi from '@/api/authApi';
+import { useToast } from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+const $toast = useToast(); 
 
 const data = reactive<User>({
     fullname: "",
@@ -13,9 +18,16 @@ const data = reactive<User>({
 const userRegister = async () => {
     try {
         const response = await authApi.register(data);
-        console.log(response);
+        $toast.success(response.data.msg);
+
+        Object.assign(data, {
+            fullname: "",
+            email: "",
+            password: ""
+        });
     } catch (error) {
-        console.log(error);
+        const err = error as ApiError;
+        $toast.error(err.response.data.msg);
     }
 }
 
