@@ -34,8 +34,23 @@ const router = createRouter({
       children: [
         {
           path: '',
+          name: 'dashboard',
+          component: () => import("../views/admin/DashboardView.vue")
+        },
+        {
+          path: 'all-appointments',
+          name: 'all-appointments',
+          component: () => import("../views/admin/AllAppointmentsView.vue")
+        },
+        {
+          path: 'add-doctor',
           name: 'add-doctor',
           component: () => import("../views/admin/AddDoctorView.vue")
+        },
+        {
+          path: 'doctor-list',
+          name: 'doctor-list',
+          component: () => import("../views/admin/DoctorListView.vue")
         }
       ]
     }
@@ -49,7 +64,7 @@ router.beforeEach(async (to,from,next) => {
       await adminArea.authAdmin();
       next();
     } catch (error) {
-      next({name: 'login'});
+      next({name: 'login-admin'});
     }
   }else {
     next();
