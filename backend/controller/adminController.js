@@ -4,6 +4,11 @@ const getAdmin = (req,res) => {
     )
 }
 
+const addDoctor = (req, res) => {
+
+}
+
 export {
-    getAdmin
+    getAdmin,
+    addDoctor
 }

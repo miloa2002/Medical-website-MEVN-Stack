@@ -1,10 +1,12 @@
 import adminArea from "@/api/adminArea";
 import { defineStore } from "pinia";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 export const useAdminStore = defineStore("admin", () => {
 
     const userAdmin = ref({});
+    const router = useRouter();
 
     onMounted(async () => {
         try {
@@ -15,7 +17,14 @@ export const useAdminStore = defineStore("admin", () => {
         }
     })
 
+    const logout = () => {
+        localStorage.removeItem("AUTH_TOKEN");
+        userAdmin.value = {}
+        router.push({name: 'home'})
+    }
+
     return {
-        userAdmin      
+        userAdmin,
+        logout   
     }
 })
