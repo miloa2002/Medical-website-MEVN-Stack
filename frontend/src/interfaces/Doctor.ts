@@ -1,14 +1,14 @@
 export interface IDoctor {
-    _id: string
+    _id?: string
     fullname: string
     email: string
     password: string
-    experience: number
-    fees: number
+    experience: number 
+    fees: number 
     about: string
     speciality: string
     degree: string
-    address?: string | null
+    address?: string
     phone: string
     image: string
 }

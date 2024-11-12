@@ -7,12 +7,13 @@ const getAdmin = (req,res) => {
 }
 
 const addDoctor = async (req, res) => {
-    const {email, password} = req.body;
+    const { fullname, experience, fees, about, speciality, degree, email, password } = req.body;
 
-    if(Object.values(req.body).includes("")) {
+    if ([fullname, experience, fees, about, speciality, degree, email, password].some(field => !field)) {
         const error = new Error("Los datos no pueden ir vacíos");
-        return res.status(400).json({msg: error.message});
+        return res.status(400).json({ msg: error.message });
     }
+    
 
     const MIN_PASS = 8;
 
