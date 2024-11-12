@@ -37,7 +37,19 @@ const addDoctor = async (req, res) => {
     }
 }
 
+const getDoctors = async(req, res) => {
+    try {
+        const doctors = await Doctor.find();
+        res.json(doctors)
+    } catch {
+        const error = new Error("Error en el servidor");
+        res.status(500).json({msg: error.message});
+        console.log(colors.red(error));
+    }
+}
+
 export {
     getAdmin,
-    addDoctor
+    addDoctor,
+    getDoctors
 }
