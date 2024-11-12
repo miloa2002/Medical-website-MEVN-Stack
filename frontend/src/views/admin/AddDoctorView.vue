@@ -46,6 +46,14 @@ const addDoctor = async () => {
     }
 }
 
+const handleFileChange = (e:Event) => {
+    const target = e.target as HTMLInputElement;
+    const file = target.files?.[0]
+    if(file) {
+        doctor.image = URL.createObjectURL(file)
+    }
+}
+
 </script>
 
 <template>
@@ -53,12 +61,10 @@ const addDoctor = async () => {
     <form @submit.prevent="addDoctor" class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="col-span-1 flex flex-col items-center">
-                <div class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-2 overflow-hidden">
-                    <input type="file" class="hidden" ref="imagenInput" />
-                    <img class="object-cover w-full h-full" />
-                </div>
-                <button class="text-blue-500 text-sm">Subir</button>
+            <div
+                class="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-2 relative overflow-hidden">
+                <input @change="handleFileChange" type="file" class="absolute inset-0 opacity-0 cursor-pointer" />
+                <img alt="Profile Image" class="object-cover w-full h-full" />
             </div>
 
             <div class="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">

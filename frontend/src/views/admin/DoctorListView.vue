@@ -17,7 +17,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div>
+    <div class="grid grid-cols-5 items-center justify-center">
         <Doctor v-for="doctor in doctors" :key="doctor._id" :doctor="doctor" />
     </div>
 </template>
