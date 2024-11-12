@@ -8,5 +8,13 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         })
+    },
+    getDoctors() {
+        const token = localStorage.getItem("AUTH_TOKEN");
+        return api.get("/admin-area/get-doctors", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
     }
 }
